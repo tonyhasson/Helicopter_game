@@ -1,0 +1,8 @@
+﻿  Main.cpp
+C:\Users\tonyh\source\repos\ConsoleApplication3\ConsoleApplication3\Main.cpp(11,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  game.cpp
+C:\Users\tonyh\source\repos\ConsoleApplication3\ConsoleApplication3\game.cpp(88,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\tonyh\source\repos\ConsoleApplication3\ConsoleApplication3\game.cpp(89,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  helicopter.cpp
+  Generating Code...
+  ConsoleApplication3.vcxproj -> C:\Users\tonyh\source\repos\ConsoleApplication3\Debug\ConsoleApplication3.exe
