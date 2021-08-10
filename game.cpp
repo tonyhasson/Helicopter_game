@@ -193,20 +193,58 @@ bool game::collision()//continue here
 {
     queue<obstacles*> tmp_queue = obs_queue;
     float heli_y = (*heli).my_shape().getPosition().y, heli_x = (*heli).my_shape().getPosition().x;
+    float tmp_obs_x, tmp_obs_upper_y, tmp_obs_lower_y, tmp_obs_hitbox_x, tmp_obs_upper_hitbox_y, tmp_obs_lower_hitbox_y;
+    RectangleShape* tmp_upper_ptr,* tmp_lower_ptr;
+
+    //if heli touches border of screen 
+    if (heli_y == TOP || heli_y + (*heli).get_hitbox_y() == BOTTOM)
+    {
+        return true;
+    }
     
+    //run through queue to check if there is collision
     while (tmp_queue.size() > 0)
     {
-        //enough to check x for one of the obstacles because x is the same for upper and lower
-        if (heli_x == tmp_queue.front()->upper_obs.my_shape_ptr()->getPosition().x)//need to add hitbox like in meteor game
-        {
-            
-          
-            if (heli_y >= TOP && heli_y <= tmp_queue.front()->upper_obs.my_shape_ptr()->getSize().y || heli_y <= BOTTOM && heli_y >= tmp_queue.front()->lower_obs.my_shape_ptr()->getPosition().y)
+       
+            //pointer for upper and lower obstacles
+            tmp_upper_ptr = tmp_queue.front()->upper_obs.my_shape_ptr();
+            tmp_lower_ptr = tmp_queue.front()->lower_obs.my_shape_ptr();
+
+            //x position
+            tmp_obs_x = tmp_upper_ptr->getPosition().x;//x is same for upper and lower
+
+            //y position
+            tmp_obs_upper_y = tmp_upper_ptr->getPosition().y;
+            tmp_obs_lower_y = tmp_lower_ptr->getPosition().y;
+
+            //hitbox x
+            tmp_obs_hitbox_x = tmp_queue.front()->upper_obs.get_hitbox_x();
+
+            //hitbox upper
+            tmp_obs_upper_hitbox_y = tmp_queue.front()->upper_obs.get_hitbox_y();
+
+            //hitbox lower
+            tmp_obs_lower_hitbox_y = tmp_queue.front()->lower_obs.get_hitbox_y();
+
+
+
+
+            //enough to check x for one of the obstacles because x is the same for upper and lower
+            if (heli_x >= tmp_obs_x && heli_x <= tmp_obs_x + tmp_obs_hitbox_x || heli_x + (*heli).get_hitbox_x() >= tmp_obs_x && heli_x+(*heli).get_hitbox_x() <= tmp_obs_x + tmp_obs_hitbox_x)
             {
-                return true;
+                //check collision for top of heli
+                if (heli_y >= TOP && heli_y <= tmp_obs_upper_hitbox_y || heli_y <= BOTTOM && heli_y >= tmp_obs_lower_y)
+                {
+                    return true;
+                }
+                //check collision for bot of heli
+                if (heli_y + (*heli).get_hitbox_y() >= TOP && heli_y + (*heli).get_hitbox_y() <= tmp_obs_upper_hitbox_y || heli_y + (*heli).get_hitbox_y() <= BOTTOM && heli_y + (*heli).get_hitbox_y() >= tmp_obs_lower_y)
+                {
+                    return true;
+                }
             }
-        }
-        tmp_queue.pop();
+            tmp_queue.pop();
+        
     }
     return false;
 }
