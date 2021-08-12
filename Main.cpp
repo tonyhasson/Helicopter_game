@@ -15,7 +15,6 @@ int main()
     //helicopter settings
     RectangleShape shape(Vector2f(20.f, 40.f));
     shape.setFillColor(Color::Green);
-    shape.setPosition(200, 100);
     Vector2f offset(0, 10.f);
 
     //create helicopter
@@ -24,7 +23,12 @@ int main()
     //create game object
     game gm(&heli,&window);
     
-    gm.gameloop();
+    while (true)
+    {
+        gm.menu();
+        gm.gameloop();
+    }
+  
 
    
 

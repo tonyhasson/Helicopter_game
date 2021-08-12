@@ -19,15 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="helicopter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="Score.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="helicopter.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="Score.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

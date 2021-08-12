@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string.h>
 using namespace std;
 using namespace sf;
 #define BOTTOM 800
